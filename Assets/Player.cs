@@ -38,11 +38,12 @@ public class Player : MonoBehaviour
        if(this.CompareTag("Player") && other.CompareTag("Finish"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+  
         }
 
-        if(this.CompareTag("Cube") && other.CompareTag("Cube"))
+        if((this.CompareTag("Cube") && other.CompareTag("Cube") || this.CompareTag("Player")) && other.CompareTag("Cube"))
         {
-            foreach(Activator button in FindObjectsOfType<Activator>())
+            foreach(Activator button in FindObjectsByType<Activator>(FindObjectsSortMode.None))
             {
                 button.canPush = false;
             }
@@ -52,9 +53,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(this.CompareTag("Cube") && other.CompareTag("Cube"))
+        if((this.CompareTag("Cube") && other.CompareTag("Cube") || this.CompareTag("Player")) && other.CompareTag("Cube"))
         {
-            foreach(Activator button in FindObjectsOfType<Activator>())
+            foreach(Activator button in FindObjectsByType<Activator>(FindObjectsSortMode.None))
             {
                 button.canPush = true;
             }
