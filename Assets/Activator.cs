@@ -9,19 +9,15 @@ public class Activator : MonoBehaviour
     public Material transparent;
     public bool canPush;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (canPush)
-        {
-            if(other.CompareTag("Cube") || other.CompareTag("Player"))
-            {
-                foreach(GameObject first in firstGroup)
-                {
+    private void OnTriggerEnter(Collider other) {
+        if (canPush) {
+            if (other.CompareTag("Cube") || other.CompareTag("Player")) {
+                foreach(GameObject first in firstGroup) {
                     first.GetComponent<Renderer>().material = normal;
                     first.GetComponent<Collider>().isTrigger = false;
                 }
-                foreach (GameObject second in secondGroup)
-                {
+                
+                foreach (GameObject second in secondGroup) {
                     second.GetComponent<Renderer>().material = transparent;
                     second.GetComponent<Collider>().isTrigger = true;
                 }
